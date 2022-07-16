@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.1](https://github.com/jobo322/apodization/compare/v1.0.0...v1.0.1) (2022-07-16)
+
+
+### Bug Fixes
+
+* change name ([f66a80a](https://github.com/jobo322/apodization/commit/f66a80a7e5dbc5335273095c3ef0412cb53bfc6c))
+
 ## 1.0.0 (2022-07-16)
 
 

@@ -1,5 +1,5 @@
 {
-  "name": "window-functions",
+  "name": "apodization",
   "version": "1.0.0",
   "description": "window function applier and some shapes",
   "main": "./lib/index.js",

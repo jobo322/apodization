@@ -1,4 +1,4 @@
-export * from './shapes/exponential';
-export * from './shapes/lorentzToGauss';
+export * from "./shapes/exponential";
+export * from "./shapes/lorentzToGauss";
 
-export * from './applyWindow';
+export * from "./applyWindow";

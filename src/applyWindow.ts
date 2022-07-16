@@ -1,6 +1,7 @@
-import { DoubleArray } from 'cheminfo-types';
-import { ExponentialOptions } from './shapes/exponential';
-import { LorentzToGaussOptions } from './shapes/lorentzToGauss';
+import { DoubleArray } from "cheminfo-types";
+
+import { ExponentialOptions } from "./shapes/exponential";
+import { LorentzToGaussOptions } from "./shapes/lorentzToGauss";
 
 type ShapeOptions = ExponentialOptions | LorentzToGaussOptions;
 
@@ -16,17 +17,21 @@ interface ApplyWindowOptions {
    */
   pointsToShift?: number;
 }
-type functionGenerator = (options: any) => (i: number) => number;
+type FunctionGenerator = (options: any) => (i: number) => number;
+
+/**
+ * pure function that applies a window function to the input data.
+ */
 export function applyWindow(
   data: DoubleArray,
-  func: functionGenerator,
-  options: ApplyWindowOptions,
+  func: FunctionGenerator,
+  options: ApplyWindowOptions
 ) {
   const { shape: shapeOptions, start = 0, pointsToShift = 0 } = options;
 
   const dataLength = data.length;
 
-  let length = 'length' in shapeOptions ? shapeOptions.length : data.length;
+  let length = "length" in shapeOptions ? shapeOptions.length : data.length;
   const generator = func({ ...options, length });
 
   const result = new Float64Array(data);

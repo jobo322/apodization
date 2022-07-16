@@ -13,13 +13,25 @@ window function applier and some shapes.
 
 ## Usage
 
+It is possible to import the functions directly. Those function accepts an object with options and returns a function (i: number) => number to avoid constants calculation for each call.
+```js
+import { lorentzToGauss } from './src/index';
+const gm = lorentzToGauss({ gaussianHz: 0.2, exponentialHz: 0, center: 0.5, length: 500 });
+const value = gm(250); //returns the max value of the gaussian;
+```
+
+Current supported shapes:
+> [Exponential](https://spin.niddk.nih.gov/NMRPipe/ref/nmrpipe/em.html)
+>[Lorentz to gauss](https://spin.niddk.nih.gov/NMRPipe/ref/nmrpipe/gm.html)
+
+It is possible to apply a window function directly to data (number[]). It does not change the original data.
 ```js
 import { applyWindow, exponential } from './src/index';
-
 const data = [1,2,3,4,5];
 const result = applyWindow(data, exponential, { lb: 0.2, start: 0 });
 ```
 
+Is it possibel
 ## License
 
 [MIT](./LICENSE)

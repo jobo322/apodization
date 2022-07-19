@@ -30,7 +30,9 @@ export function compose(shapeOptions: ShapeOptions) {
   const data = new Float64Array(dataLength);
   shapes.forEach((options) => {
     const { shape, start = 0 } = options;
-    const length = "length" in shape ? shape.length : dataLength - start;
+    const { options: shapeOptions } = shape;
+    const length =
+      "length" in shapeOptions ? shapeOptions.length : dataLength - start;
     const currentFunc = getFunction(shape);
     applyWindow(data, {
       func: currentFunc,

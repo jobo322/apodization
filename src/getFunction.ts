@@ -2,8 +2,8 @@ import type { WindowFunctions } from "./shapes/WindowFunctions";
 import { exponential } from "./shapes/exponential";
 import { lorentzToGauss } from "./shapes/lorentzToGauss";
 
-export function getFunction(options: WindowFunctions) {
-  const { kind } = options;
+export function getFunction(shape: WindowFunctions) {
+  const { kind, options } = shape;
   switch (kind) {
     case "exponential":
       return exponential(options);

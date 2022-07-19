@@ -1,12 +1,14 @@
 import type { ExponentialOptions } from "./exponential";
 import type { LorentzToGaussOptions } from "./lorentzToGauss";
 
-interface Exponential extends ExponentialOptions {
+interface Exponential {
   kind: "exponential";
+  options: ExponentialOptions;
 }
 
-interface LorentToGauss extends LorentzToGaussOptions {
+interface LorentToGauss {
   kind: "lorentzToGauss";
+  options: LorentzToGaussOptions;
 }
 
 export type WindowFunctions = Exponential | LorentToGauss;

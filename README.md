@@ -1,15 +1,15 @@
-# window-functions
+# Apodization and window functions
 
 [![NPM version][npm-image]][npm-url]
 [![build status][ci-image]][ci-url]
 [![Test coverage][codecov-image]][codecov-url]
 [![npm download][download-image]][download-url]
 
-window function applier and some shapes.
+A package to compose and apply window functions.
 
 ## Installation
 
-`$ npm i window-functions`
+`$ npm i apodization`
 
 ## Usage
 
@@ -19,7 +19,22 @@ import { lorentzToGauss } from 'apodization';
 const gm = lorentzToGauss({ gaussianHz: 0.2, exponentialHz: 0, center: 0.5, length: 500, dw = 0.01 });
 const value = gm(250); //returns the max value of the gaussian;
 ```
+It is possible to use the `getFunction`
+```js
+import { getFunction } from 'apodization';
 
+const gm = getFunction({ 
+  kind: 'lorentzToGauss', 
+  options: { 
+    gaussianHz: 0.2, 
+    exponentialHz: 0, 
+    center: 0.5, 
+    length: 500, 
+    dw = 0.01
+  }
+});
+const value = gm(250); //returns the max value of the gaussian;
+```
 Current supported shapes:
 > [Exponential](https://spin.niddk.nih.gov/NMRPipe/ref/nmrpipe/em.html)
 >[Lorentz to gauss](https://spin.niddk.nih.gov/NMRPipe/ref/nmrpipe/gm.html)
@@ -36,11 +51,11 @@ const result = applyWindow(data, {
 });
 ```
 
-It is possible to call a window function by:
+It is possible to compose a window function by:
 ```js
-import { getFunction } from 'apodization';
+import { compose } from 'apodization';
 
-const shapeOptions = { 
+const lorentzToGaussShapeOptions = { 
   dw = 0.01,
   center: 0.5, 
   length: 500,
@@ -48,9 +63,29 @@ const shapeOptions = {
   exponentialHz: 0, 
 };
 
-const func = getFunction({
-  kind: 'lorentzToGauss',
-  ...shapeOptions,
+const exponentialShapeOptions = {
+  dw = 0.01,
+  lb = 2,
+}
+
+const func = compose({
+  length: 500,
+  shapes: [
+    {
+      start: 0,
+      shape: {
+        kind: 'lorentzToGauss',
+        options: lorentzToGaussShapeOptions,
+      }
+    },
+    {
+      start: 0,
+      shape: {
+        kind: 'exponential',
+        options: exponentialShapeOptions,
+      }
+    }
+  ]
 });
 
 console.log(func(250)); //value of window function of index 250

@@ -1,8 +1,4 @@
-import { FunctionGenerator } from "../applyWindow";
-
-export function getData(generator: FunctionGenerator, options: any = {}) {
-  const { length } = options;
-  const func = generator(options);
+export function getData(func: (i: number) => number, length: any) {
   const data = new Float64Array(length);
   let max = Number.MIN_SAFE_INTEGER;
   for (let i = 0; i < length; i++) {

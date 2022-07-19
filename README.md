@@ -15,8 +15,8 @@ window function applier and some shapes.
 
 It is possible to import the functions directly. Those function accepts an object with options and returns a function (i: number) => number to avoid constants calculation for each call.
 ```js
-import { lorentzToGauss } from './src/index';
-const gm = lorentzToGauss({ gaussianHz: 0.2, exponentialHz: 0, center: 0.5, length: 500 });
+import { lorentzToGauss } from 'apodization';
+const gm = lorentzToGauss({ gaussianHz: 0.2, exponentialHz: 0, center: 0.5, length: 500, dw = 0.01 });
 const value = gm(250); //returns the max value of the gaussian;
 ```
 
@@ -24,14 +24,37 @@ Current supported shapes:
 > [Exponential](https://spin.niddk.nih.gov/NMRPipe/ref/nmrpipe/em.html)
 >[Lorentz to gauss](https://spin.niddk.nih.gov/NMRPipe/ref/nmrpipe/gm.html)
 
-It is possible to apply a window function directly to data (number[]). It does not change the original data.
+It is possible to apply a window function directly to data (number[]). It does not change the original data by default but it is possible to pass an array in `output` property.
 ```js
-import { applyWindow, exponential } from './src/index';
+import { applyWindow, exponential } from 'apodization';
 const data = [1,2,3,4,5];
-const result = applyWindow(data, exponential, { lb: 0.2, start: 0 });
+const exponentialFunc = exponential({ dw: 0.1, lb: 0.2, start: 0 })
+const result = applyWindow(data, {
+  func: exponential,
+  start: 0,
+  output: data //inplace modification
+});
 ```
 
-Is it possibel
+It is possible to call a window function by:
+```js
+import { getFunction } from 'apodization';
+
+const shapeOptions = { 
+  dw = 0.01,
+  center: 0.5, 
+  length: 500,
+  gaussianHz: 0.2, 
+  exponentialHz: 0, 
+};
+
+const func = getFunction({
+  kind: 'lorentzToGauss',
+  ...shapeOptions,
+});
+
+console.log(func(250)); //value of window function of index 250
+```
 ## License
 
 [MIT](./LICENSE)

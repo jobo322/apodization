@@ -1,11 +1,15 @@
 {
   "name": "apodization",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "A package to handle with apodization and composing window functions",
   "main": "./lib/index.js",
   "module": "./lib-esm/index.js",
   "types": "./lib/index.d.ts",
-  "keywords": ["apodization", "window function", "windowing"],
+  "keywords": [
+    "apodization",
+    "window function",
+    "windowing"
+  ],
   "author": "jobo322",
   "license": "MIT",
   "files": [

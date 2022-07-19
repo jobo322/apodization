@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.1](https://github.com/jobo322/apodization/compare/v2.0.0...v2.0.1) (2022-07-19)
+
+
+### Bug Fixes
+
+* update README ([31d0724](https://github.com/jobo322/apodization/commit/31d07244fad0f5ac41ba5e6b11930c41db830d20))
+
 ## [2.0.0](https://github.com/jobo322/apodization/compare/v1.0.1...v2.0.0) (2022-07-19)
 
 

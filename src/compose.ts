@@ -27,7 +27,7 @@ interface ShapeOptions {
 
 export function compose(shapeOptions: ShapeOptions) {
   const { length: dataLength, shapes = [] } = shapeOptions;
-  const data = new Float64Array(dataLength);
+  let data = new Float64Array(dataLength).fill(1);
   shapes.forEach((options) => {
     const { shape, start = 0 } = options;
     const { options: shapeOptions } = shape;

@@ -2,12 +2,7 @@ import { DoubleArray } from "cheminfo-types";
 
 import { getData } from "./utils/getData";
 
-interface GenericShapeOptions {
-  length?: number;
-  dw?: number;
-}
-
-export interface ApplyWindowOptions<T> {
+export interface ApplyWindowOptions {
   /**
    * Function that returns the value of the window function per index
    */
@@ -34,10 +29,7 @@ export interface ApplyWindowOptions<T> {
 /**
  * pure function that applies a window function to the input data.
  */
-export function applyWindow(
-  data: DoubleArray,
-  options: ApplyWindowOptions<GenericShapeOptions>
-) {
+export function applyWindow(data: DoubleArray, options: ApplyWindowOptions) {
   const dataLength = data.length;
 
   const {

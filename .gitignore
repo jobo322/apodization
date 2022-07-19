@@ -43,3 +43,4 @@ lib
 lib-esm
 dist
 nodeScript.js
+.eslintcache
